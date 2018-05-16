@@ -1,20 +1,22 @@
 import * as types from './mutation_types'
 
 export default {
-  creerNouvellePartie ({ commit }, listeJoueurs) {
+  creerNouvellePartie ({ commit }, listeJoueurs, nombreParties) {
     return new Promise((resolve) => {
       const liste = []
       listeJoueurs.forEach((element, index) => {
         liste.push({ id: index + 1, nom: element, listeScore: [] })
       })
-      commit(types.INIT_LISTE, liste)
+      commit(types.INIT_LISTE, { liste, nombreParties })
       resolve()
     })
   },
-  ajouterScore ({ commit }, score) {
-    commit(types.UPDATE_SCORE, score)
+  ajouterScorePartie ({ commit }, listeScore) {
+    if (!listeScore.some(element => isNaN(parseInt(element, 10)))) {
+      commit(types.UPDATE_SCORE, listeScore)
+    }
   },
-  retirerScore ({ commit }) {
+  retirerScorePartie ({ commit }) {
     commit(types.UNDO_SCORE)
   }
 }

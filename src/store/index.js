@@ -15,7 +15,7 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
   state: {
     listeJoueurs: [],
-    indexJoueurCourant: null
+    partieEnCours: 0
   },
   mutations: {
     ...mutations,

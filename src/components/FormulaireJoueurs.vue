@@ -1,8 +1,9 @@
 <template>
   <div class="formulaireJoueurs container">
-    <b-button @click="ajouterJoueur" variant="primary">Ajouter un joueur</b-button>
-    <b-button @click="supprimerJoueur" variant="primary">Supprimer un joueur</b-button>
     <b-form @submit="onSubmit">
+      <b-form-input v-model="nombre" number required placeholder="Nombre de parties"></b-form-input>
+      <b-button @click="ajouterJoueur" variant="primary">Ajouter un joueur</b-button>
+      <b-button @click="supprimerJoueur" variant="primary">Supprimer un joueur</b-button>
       <b-form-input v-for="(joueur, index) in joueurs" :key="index"
         v-model="joueurs[index]"
         required
@@ -20,7 +21,8 @@ export default {
   name: 'FormulaireJoueurs',
   data () {
     return {
-      joueurs: []
+      joueurs: [],
+      nombre: 6
     }
   },
   methods: {
